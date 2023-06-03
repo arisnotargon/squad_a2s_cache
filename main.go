@@ -1,18 +1,33 @@
 package main
 
 import (
-	"fmt"
+	"flag"
 
+	"github.com/arisnotargon/squad_a2s_cache/funcs"
 	"github.com/davecgh/go-spew/spew"
-	"github.com/google/gopacket/pcap"
 )
 
+var (
+	runMode string
+)
+
+func init() {
+	spew.Dump("in init")
+	flag.StringVar(&runMode, "runMode", "listen", "运行模式,list_dev 列出设备名,listen 开始监听抓包")
+}
+
 func main() {
-	devList, err := pcap.FindAllDevs()
-	if err != nil {
-		spew.Dump("FindAllDevs err==>", err)
+	flag.Parse()
+
+	switch runMode {
+	case "list_dev":
+		funcs.ListDev()
+	case "listen":
+		funcs.Cap_a2s()
+	case "send_test_payload":
+		funcs.SendTestPackage()
+	case "start_test_server_info":
+		funcs.StartTestServerInfo()
 	}
-	for idx, device := range devList {
-		fmt.Printf("device %d ===> [%+v]\n", idx, device)
-	}
+
 }

@@ -2,7 +2,10 @@ module github.com/arisnotargon/squad_a2s_cache
 
 go 1.20
 
-require github.com/davecgh/go-spew v1.1.1
+require (
+	github.com/davecgh/go-spew v1.1.1
+	gopkg.in/yaml.v3 v3.0.1
+)
 
 require (
 	github.com/google/gopacket v1.1.19
