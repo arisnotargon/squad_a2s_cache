@@ -1,0 +1,1 @@
+# squad_a2s_cache
